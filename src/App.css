@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme{
+    --color-primary: #ca8888;
+}
+
+.omeg-color {
+    background-color:"#da48be"
+}
+
+.body {
+    background-color: '#da48be'
+}
+.text-color {
+    color: '#ca8888'
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }

@@ -1,0 +1,31 @@
+import { useState } from "react";
+import ProductDescAndFeature from "./ProductDescAndFeature";
+import ProductName from "./ProductName";
+import ProductPrice from "./ProductPrice";
+import { Product } from "../../../../types/Product";
+
+const ProductDetails = ({ product }: { product: Product }) => {
+  const [isPresentInCart, setIsPresentInCart] = useState(false);
+  const [cartCountValue] = useState(0);
+  const [currentId, setCurrentId] = useState("");
+  const [refreshCart, setRefreshCart] = useState(false);
+
+  return (
+    <div className="w-[40rem] p-4">
+      <ProductName product={product} />
+      <ProductDescAndFeature product={product} />
+      <ProductPrice
+        product={product}
+        IsPresentInCart={isPresentInCart}
+        setIsPresentInCart={setIsPresentInCart}
+        cartCountValue={cartCountValue}
+        currentId={currentId}
+        setCurrentId={setCurrentId}
+        refreshCart={refreshCart}
+        setRefreshCart={setRefreshCart}
+      />
+    </div>
+  );
+};
+
+export default ProductDetails;
