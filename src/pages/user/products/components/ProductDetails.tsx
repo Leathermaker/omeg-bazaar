@@ -11,7 +11,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
   const [refreshCart, setRefreshCart] = useState(false);
 
   return (
-    <div className="w-[40rem] p-4">
+    <div className="w-full p-4">
       <ProductName product={product} />
       <ProductDescAndFeature product={product} />
       <ProductPrice

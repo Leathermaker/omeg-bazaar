@@ -52,13 +52,15 @@ const ProductDisplay = () => {
   }
 
   return (
-    <div className="min-h-screen w-full  py-12 px-4 sm:px-6 lg:px-8 mt-14">
+    <div className="min-h-screen w-full  py-12 px-4 sm:px-6 lg:px-8 mt-28">
       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
         <div className="md:flex ">
           {/* Left side - product images */}
-          <div className="md:w-1/2 p-6 flex justify-between gap-6">
-            {/* Main image */}
-            <img src={product.images[0].url} />
+          <div className="md:w-1/2 p-6 flex justify-between gap-6 aspect square h-full">
+            <img
+              src={product.images[0].url}
+              className="w-full h-full object-cover"
+            />
           </div>
           {error && <p className="text-red-700">{error}</p>}
           {loading && <p>Loading...</p>}

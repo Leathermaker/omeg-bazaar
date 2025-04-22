@@ -62,14 +62,14 @@ const ProductPrice = ({
   };
 
   return (
-    <div className="mt-8 w-full p-4   ">
+    <div className="mt-8 w-full p-4 ">
       <div className="flex">
         <span className="text-3xl font-bold text-gray-900">
           ${product.price.toFixed(2)}
         </span>
      </div>
 
-      <div className="mt-6 space-x-4 w-full flex justify-start ">
+      <div className="mt-6 space-x-4 w-full flex justify-start">
         <button
           onClick={handleCartAction}
           className=" bg-primary text-md text-white py-2 px-4 rounded-lg font-medium focus:outline-none   transition-colors"
@@ -81,7 +81,7 @@ const ProductPrice = ({
         </button>
       </div>
 
-      <div className="mt-6 flex items-center justify-center text-sm text-gray-500">
+      <div className="mt-6 flex justify-start text-sm text-gray-500 ">
         <svg
           className="h-5 w-5 mr-2"
           fill="none"
