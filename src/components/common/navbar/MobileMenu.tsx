@@ -48,7 +48,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 <Link to="/about">About</Link>
                 <Link to="/products">Products</Link>
                 <Link to="/contact">Contact</Link>
-                <Link to="/cart">Cart</Link>
+                
               </ul>
               <div className="flex justify-between items-center mt-8">
                 <div className="flex gap-2">
