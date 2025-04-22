@@ -38,7 +38,7 @@ const Login = () => {
 
   return (
     <ScreenHandler>
-      <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="min-h-screen flex justify-center items-center ">
         <div className="w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] bg-white rounded-lg shadow-lg flex flex-col md:flex-row relative">
           {/* Success message  */}
           {successMessage && <SuccessMessage successMessage={successMessage} />}
