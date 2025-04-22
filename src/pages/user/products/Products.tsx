@@ -21,7 +21,7 @@ const Products = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [products]);
- 
+
   const handleSearchChange = useCallback((value: string) => {
     setSearch(value);
   }, []);
@@ -37,7 +37,9 @@ const Products = () => {
   if (isError) {
     return (
       <div className="min-h-screen flex justify-center items-center">
-        <div className="text-red-500">Error loading products. Please try again later.</div>
+        <div className="text-red-500">
+          Error loading products. Please try again later.
+        </div>
       </div>
     );
   }
@@ -45,24 +47,26 @@ const Products = () => {
   const filteredProducts = (products || []).filter((product: Product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
-  
+
   return (
     <ScreenHandler>
       <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6 md:space-y-8">
         {/* Search and Filter Section */}
-        <div className="w-full">
-          <SearchAndFilter search={search} onSearchChange={handleSearchChange} />
+        <div className="w-full  overflow-hidden">
+          <SearchAndFilter
+            search={search}
+            onSearchChange={handleSearchChange}
+          />
         </div>
 
         {/* Main Content */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Category Filter */}
           <div className="lg:w-1/4">
-            <div className="w-full p-3 rounded-lg bg-white">
-          
+            <div className="w-full px-2 border-1 border-gray-200 p-2 rounded-lg">
               <select
                 id="category-select"
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none" 
+                className="w-full p-2  rounded-md focus:outline-none"
                 value={selectedCategory || ""}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
@@ -82,13 +86,15 @@ const Products = () => {
           {/* Product List */}
           <div className="lg:w-3/4">
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 p-14">
+              <div className="grid grid-cols-12  gap-4 sm:gap-6 justify-center items-center  ">
                 {filteredProducts.map((product: Product) => (
-                  <ProductCard key={product._id} product={product} />
+                  <div className="col-span-12 lg:col-span-4  sm:col-span-6 flex justify-center items-center">
+                    <ProductCard key={product._id} product={product} />
+                  </div>
                 ))}
               </div>
             ) : (
-              <div className="w-full py-12 flex flex-col items-center justify-center bg-gray-50 rounded-lg">
+              <div className="w-full py-12 flex flex-col items-center justify-center bg-gray-50 rounded-lg ">
                 <svg
                   className="w-16 h-16 text-gray-400 mb-4"
                   fill="none"
@@ -103,8 +109,9 @@ const Products = () => {
                     d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <h3 className="text-lg font-medium text-gray-700">No products found</h3>
-             
+                <h3 className="text-lg font-medium text-gray-700">
+                  No products found
+                </h3>
               </div>
             )}
           </div>

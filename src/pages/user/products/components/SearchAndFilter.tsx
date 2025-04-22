@@ -12,7 +12,7 @@ const SearchAndFilter = ({ search, onSearchChange }: Props) => {
   };
 
   return (
-    <div className="w-full lg:w-[90rem] lg:mt-12 mt-8 lg:ml-8 ml-2">
+    <div className=" lg:mt-12 mt-8 lg:ml-8 ml-2">
       <div className="relative w-[90vw]">
         <FaSearch className="absolute left-3 top-3 text-gray-400" />
         <input
@@ -20,7 +20,7 @@ const SearchAndFilter = ({ search, onSearchChange }: Props) => {
           placeholder="Search item by name"
           value={search}
           onChange={handleSearch}
-          className="w-full p-2 pl-10 bg-red-50 rounded-full"
+          className="w-full p-2 pl-10 bg-red-50 rounded-full focus:outline-none"
         />
       </div>
     </div>

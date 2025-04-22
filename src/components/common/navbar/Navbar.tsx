@@ -42,7 +42,7 @@ const Navbar = () => {
           <NavLinks />
         </div>
 
-        <div className="gap-6 hidden lg:flex">
+        <div className="lg:gap-6 gap-4 flex ml-34 sm:ml-[24rem] md:ml-[32rem]">
           <button className="text-primary hover:opacity-80 transition-opacity relative">
             <p className="bg-red-600 w-4 h-4 rounded-full flex justify-center items-center  text-xs text-white absolute -top-1 left-4 ">
               {cartCount}
