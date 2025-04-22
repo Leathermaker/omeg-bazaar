@@ -5,6 +5,7 @@ import { useState } from "react";
 import { registerUser } from "../../services/authServices";
 import SuccessMessage from "../../components/common/SuccessMessage";
 import { MdLocalPhone} from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -125,9 +126,9 @@ const Register = () => {
           <div className="mt-8 text-center">
             <p className="text-gray-600">
               Already have an account?{" "}
-              <a href="/login" className="text-primary hover:underline">
+              <Link to="/login" className="text-primary hover:underline">
                 Sign in
-              </a>
+              </Link>
             </p>
           </div>
         </div>
