@@ -64,7 +64,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               setIsPresentInCart(true);
             }
           }}
-          className="bg-primary text-white text-xs rounded px-2 py-1 hover:bg-primary-dark transition-colors cursor-pointer"
+          className="bg-primary text-white text-xs rounded px-2 py-2 hover:bg-primary-dark transition-colors cursor-pointer"
         >
           {isPresentInCart ? "Remove From Cart" : "Add To Cart"}
         </button>

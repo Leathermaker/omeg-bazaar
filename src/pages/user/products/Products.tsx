@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import ScreenHandler from "../../../components/wrappers/ScreenHandler";
 import ProductCard from "./components/ProductCard";
 import SearchAndFilter from "./components/SearchAndFilter";
-import { useCategoryStore } from "../../../store/Cart/Product.store";
+import { useCategoryStore } from "../../../store/product/Product.store";
 import { useQuery } from "@tanstack/react-query";
 import { getProductsQuery } from "../../../services/queries";
 import { Product } from "../../../types/Product";
