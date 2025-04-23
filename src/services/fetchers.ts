@@ -1,9 +1,11 @@
 import axios from "axios";
 import { Product } from "../types/Product";
-
+import Cookies from "js-cookie";
+import { CurrentUser } from "../types/auth";
+const token = Cookies.get("authToken");
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const fetchCategories = async () => {
+ const fetchCategories = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/api/v2/product/categories`, {
       headers: { "Content-Type": "application/json" }
@@ -14,7 +16,7 @@ export const fetchCategories = async () => {
   }
 };
 
-export const getProductsByCategory = async (categoryParam: string) => {
+ const getProductsByCategory = async (categoryParam: string) => {
   try {
     const response = await axios.get(
       `${BASE_URL}/api/v2/product/get/${categoryParam}`,
@@ -29,7 +31,7 @@ export const getProductsByCategory = async (categoryParam: string) => {
   }
 };
 
-export const fetchProductIds = async (
+ const fetchProductIds = async (
   productIds: string[]
 ): Promise<Product[]> => {
   try {
@@ -43,3 +45,24 @@ export const fetchProductIds = async (
     throw error;
   }
 };
+
+ const fetchCurrentUser = async (): Promise<CurrentUser  | unknown> => {
+  if (!token) {
+    console.warn("No token found");
+    return null;
+  }
+  try {
+    const response = await axios.get(`${BASE_URL}/api/v1/user/current`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data.user;
+  } catch(err) {
+    // setError("Failed to fetch user");
+    console.error("Failed to fetch user");
+    return err;
+  }
+};
+
+export { fetchCategories, getProductsByCategory, fetchProductIds, fetchCurrentUser };
