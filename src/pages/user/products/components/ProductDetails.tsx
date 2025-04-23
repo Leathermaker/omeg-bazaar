@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductDescAndFeature from "./ProductDescAndFeature";
 import ProductName from "./ProductName";
 import ProductPrice from "./ProductPrice";
@@ -9,6 +9,11 @@ const ProductDetails = ({ product }: { product: Product }) => {
   const [cartCountValue] = useState(0);
   const [currentId, setCurrentId] = useState("");
   const [refreshCart, setRefreshCart] = useState(false);
+
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   return (
     <div className="w-full p-4">
