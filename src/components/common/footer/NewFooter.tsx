@@ -23,7 +23,7 @@ const NewFooter = () => {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <div className="h-[30rem] flex gap-4 items-end justify-center bg-gradient-to-b from-transparent to-red-100">
+      <div className="h-[30rem] flex items-end justify-center bg-gradient-to-b from-transparent to-red-100 ">
         <img
           onClick={() => handleCategoryClick("electronics")}
           src={JuicerJag}
@@ -33,25 +33,25 @@ const NewFooter = () => {
         <img
           onClick={() => handleCategoryClick("fashion")}
           src={purse}
-          className="hidden md:block w-[12rem] aspect-auto cursor-pointer"
+          className=" w-[3rem] md:w-[8rem] lg:w-[12rem] aspect-auto cursor-pointer"
         />
 
         <img
           onClick={() => handleCategoryClick("toys")}
           src={toy}
-          className="w-[12rem] aspect-auto translate-y-6 relative z-10 cursor-pointer"
+          className="w-[5rem] md:w-[8rem] lg:w-[12rem] aspect-auto translate-y-6 relative z-10 cursor-pointer"
         />
 
         <img
           onClick={() => handleCategoryClick("fashion")}
           src={foundation}
-          className=" w-[3rem] lg:w-[7rem] aspect-auto cursor-pointer"
+          className=" w-[2rem] md:w-[5rem] lg:w-[7rem] aspect-auto cursor-pointer"
         />
 
         <img
           onClick={() => handleCategoryClick("sports")}
           src={shoe}
-          className="hidden lg:block w-[15rem] aspect-auto cursor-pointer"
+          className="w-[3rem] md:w-[9rem] lg:block lg:w-[15rem] aspect-auto cursor-pointer"
         />
       </div>
 
