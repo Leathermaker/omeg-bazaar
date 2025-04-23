@@ -7,28 +7,52 @@ import {
 } from "../../../constants/imagePath";
 import Footer from "./Footer";
 
+import { useNavigate } from "react-router-dom";
+import { useCategoryStore } from "../../../store/product/Product.store";
+
 const NewFooter = () => {
+  const navigate = useNavigate();
+  const setSelectedCategory = useCategoryStore(
+    (state) => state.setSelectedCategory
+  );
+
+  const handleCategoryClick = (categoryName: string) => {
+    setSelectedCategory(categoryName);
+    navigate("/products");
+  };
+
   return (
     <div className="w-full h-screen flex flex-col">
       <div className="h-[30rem] flex gap-4 items-end justify-center bg-gradient-to-b from-transparent to-red-100">
         <img
+          onClick={() => handleCategoryClick("electronics")}
           src={JuicerJag}
-          className="hidden lg:block w-[10rem] aspect-auto"
+          className="w-[3rem] lg:w-[10rem] md:w-[8rem] aspect-auto cursor-pointer"
         />
 
-        <img src={purse} className="hidden md:block w-[12rem] aspect-auto" />
+        <img
+          onClick={() => handleCategoryClick("fashion")}
+          src={purse}
+          className="hidden md:block w-[12rem] aspect-auto cursor-pointer"
+        />
 
         <img
+          onClick={() => handleCategoryClick("toys")}
           src={toy}
-          className="w-[12rem] aspect-auto translate-y-6 relative z-10"
+          className="w-[12rem] aspect-auto translate-y-6 relative z-10 cursor-pointer"
         />
 
         <img
+          onClick={() => handleCategoryClick("fashion")}
           src={foundation}
-          className="hidden md:block w-[7rem] aspect-auto"
+          className=" w-[3rem] lg:w-[7rem] aspect-auto cursor-pointer"
         />
 
-        <img src={shoe} className="hidden lg:block w-[15rem] aspect-auto" />
+        <img
+          onClick={() => handleCategoryClick("sports")}
+          src={shoe}
+          className="hidden lg:block w-[15rem] aspect-auto cursor-pointer"
+        />
       </div>
 
       <div className="flex justify-center">

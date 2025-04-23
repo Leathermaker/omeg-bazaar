@@ -5,11 +5,11 @@ import LoginAnimation from "../../../public/assets/animation.json";
 import ScreenHandler from "../../components/wrappers/ScreenHandler";
 import SuccessMessage from "../../components/common/SuccessMessage";
 import { loginUser } from "../../services/authServices";
-
+import Cookies from "js-cookie";
 const Login = () => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
- 
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -24,7 +24,8 @@ const Login = () => {
       setSuccessMessage("Login successful! Redirecting...");
 
       if (data.token) {
-        localStorage.setItem("authToken", data.token);
+        Cookies.set("authToken", data.token);
+       
       }
 
       setTimeout(() => {
@@ -44,7 +45,7 @@ const Login = () => {
           {successMessage && <SuccessMessage successMessage={successMessage} />}
 
           {/* Left panel with Lottie animation */}
-          <div className="hidden md:block md:w-1/2 bg-red-100 rounded-l-lg p-8 lg:flex items-center justify-center">
+          <div className="hidden md:block md:w-1/2 bg-primary rounded-l-lg p-8 lg:flex items-center justify-center">
             <div className="text-black text-center">
               <h2 className="text-3xl font-bold mb-4">Welcome Back</h2>
               <p className="mb-6">

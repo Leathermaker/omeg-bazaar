@@ -2,13 +2,13 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useCategoryStore } from "../../../../store/Cart/Product.store.tsx";
+import { useCategoryStore } from "../../../../store/product/Product.store.tsx";
 
 import { ProductImage } from "../../../../types/Product.ts";
 import { getCategoriesQuery } from "../../../../services/queries.ts";
 import { useQuery } from "@tanstack/react-query";
 
-type CategoryType = {
+export type CategoryType = {
   _id: string;
   name: string;
   description?: string;
@@ -77,14 +77,10 @@ const CategorySection = () => {
         ref={scrollContainerRef}
         className="flex gap-8 overflow-x-auto pb-8 scrollbar-hide relative"
       >
-        {isPending && (
-          <p>Loading.......</p>
-        )}
+        {isPending && <p>Loading.......</p>}
 
-        {isError && (
-          <p>Error loading categories</p>
-        )}
-            
+        {isError && <p>Error loading categories</p>}
+
         {categories?.map((category: CategoryType, index: number) => (
           <motion.div
             key={category._id}
@@ -114,7 +110,6 @@ const CategorySection = () => {
           </motion.div>
         ))}
       </div>
-
 
       {showRightBtn && (
         <button

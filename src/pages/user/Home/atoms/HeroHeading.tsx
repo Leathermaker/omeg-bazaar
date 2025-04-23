@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { GoArrowRight} from "react-icons/go";
 import { Link } from "react-router-dom";
-
 const HeroHeading = ({
   containerRef
 }: {
@@ -29,7 +28,7 @@ const HeroHeading = ({
       ref={containerRef}
       className="absolute left-0 w-full h-[10rem] flex flex-col justify-center items-center z-10  gap-22"
     >
-      <div className="  flex flex-col justify-center items-center text-primary ">
+      <div className="  flex flex-col justify-center items-center text-white ">
         <motion.h1
           style={{ fontSize: fontSizex }}
           className="text-[10vw] lg:[5rem] md:[5rem] leading-none font-bold font-serif text-center text-shadow-sm"
@@ -46,7 +45,7 @@ const HeroHeading = ({
 
       <Link
         to="/products"
-        className="bg-primary rounded-full text-sm text-white px-4 py-1 flex items-center lg:gap-2"
+        className="bg-primary rounded-full text-sm text-white px-4 py-2 flex items-center lg:gap-2"
       >
         Our Products
         <GoArrowRight className="transition-transform duration-300 hover:translate-x-1 hover:-translate-y-1" />
