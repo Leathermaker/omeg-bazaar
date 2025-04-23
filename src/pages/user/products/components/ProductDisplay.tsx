@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Product } from "../../../../types/Product";
 import ProductDetails from "./ProductDetails";
+import ProductImage from "./ProductImage";
 
 const ProductDisplay = () => {
   const Base_url = import.meta.env.VITE_BASE_URL;
@@ -42,6 +43,10 @@ const ProductDisplay = () => {
       fetchProduct();
     }
   }, [Base_url, id]);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!product) {
     return (
@@ -56,12 +61,7 @@ const ProductDisplay = () => {
       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
         <div className="md:flex ">
           {/* Left side - product images */}
-          <div className="md:w-1/2 p-6 flex justify-between gap-6 aspect square h-full">
-            <img
-              src={product.images[0].url}
-              className="w-full h-full object-cover"
-            />
-          </div>
+            <ProductImage product={product} />
           {error && <p className="text-red-700">{error}</p>}
           {loading && <p>Loading...</p>}
 
