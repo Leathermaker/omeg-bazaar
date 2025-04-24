@@ -37,7 +37,7 @@ const HeroHeading = ({
         </motion.h1>
         <motion.h1
           style={{ fontSize: fontSizey }}
-          className="text-[10vw] lg:[5rem] md:[5rem] leading-none font-semibold font-serif"
+          className="text-[10vw] lg:[5rem] md:[5rem] leading-none font-semibold font-serif text-shadow-sm"
         >
           Bazaar
         </motion.h1>

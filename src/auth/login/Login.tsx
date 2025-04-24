@@ -40,12 +40,12 @@ const Login = () => {
   return (
     <ScreenHandler>
       <div className="min-h-screen flex justify-center items-center ">
-        <div className="w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] bg-white rounded-lg shadow-lg flex flex-col md:flex-row relative">
+        <div className="w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] bg-white  flex flex-col md:flex-row relative">
           {/* Success message  */}
           {successMessage && <SuccessMessage successMessage={successMessage} />}
 
           {/* Left panel with Lottie animation */}
-          <div className="hidden md:block md:w-1/2 bg-primary rounded-l-lg p-8 lg:flex items-center justify-center">
+          <div className="hidden md:block md:w-1/2 bg-red-50 rounded-l-lg p-8 lg:flex items-center justify-center">
             <div className="text-black text-center">
               <h2 className="text-3xl font-bold mb-4">Welcome Back</h2>
               <p className="mb-6">

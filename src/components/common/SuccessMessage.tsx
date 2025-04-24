@@ -3,8 +3,8 @@ import { FaCheckCircle } from "react-icons/fa"
 
 const SuccessMessage = ( { successMessage }: { successMessage: string | null}) => {
   return (
-    <div className="absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center z-10 rounded-lg">
-    <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full text-center">
+    <div className="absolute inset-0 bg-white  flex items-center justify-center z-10 ">
+    <div className=" p-6  max-w-sm w-full text-center">
       <FaCheckCircle className="text-primary text-5xl mx-auto mb-4" />
       <h3 className="text-2xl font-bold text-gray-800 mb-2">Success!</h3>
       <p className="text-gray-600 mb-4">{successMessage}</p>

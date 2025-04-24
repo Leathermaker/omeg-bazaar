@@ -7,17 +7,18 @@ import Can from "../components/3D/Can";
 
 import AddressForm from "../pages/user/order/components/AddressForm";
 import Cart from "../pages/user/cart/Cart";
-import CartLayout from "../pages/user/cart/components/CartLayout";
 import ProductDisplay from "../pages/user/products/components/ProductDisplay";
+import Profile from "../pages/user/profile/Profile";
+import EditProfile from "../pages/user/profile/components/EditProfile";
 
 const Router = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<UserLayout />}>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/products" element={<Products />} />
           <Route path="/can" element={<Can />} />
@@ -25,7 +26,10 @@ const Router = () => {
           <Route path="/products/:id" element={<ProductDisplay />} />
           <Route path="/addressform" element={<AddressForm />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/cart" element={<CartLayout />} />
+          <Route path="/order" element={<AddressForm />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/edit/:userId" element={< EditProfile />} />
+
         </Route>
       </Routes>
     </>
