@@ -1,76 +1,14 @@
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { cosmetic, juicer } from "../../../../constants/imagePath";
 import { useEffect, useRef, useState } from "react";
 
 import Button from "../../../../components/common/Button";
+import { getProductsByCategory } from "../../../../services/fetchers";
+import { Product } from "../../../../types/Product";
+import ProductCard from "../components/ProductCard";
 
 const KitchenProducts = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const Products = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 100,
-      description: "This is product 1",
-      image: juicer
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 200,
-      description: "This is product 2",
-      image: juicer
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 300,
-      description: "This is product 3",
-      image: cosmetic
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 400,
-      description: "This is product 4",
-      image: juicer
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 500,
-      description: "This is product 5",
-      image: juicer
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 500,
-      description: "This is product 5",
-      image: juicer
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 500,
-      description: "This is product 5",
-      image: juicer
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 500,
-      description: "This is product 5",
-      image: juicer
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 500,
-      description: "This is product 5",
-      image: juicer
-    }
-  ];
+  const [Products, setProducts] = useState<Product[]>([]);
   const [showLeftBtn, setShowLeftBtn] = useState(false);
   const [showRightBtn, setShowRightBtn] = useState(true);
 
@@ -82,6 +20,19 @@ const KitchenProducts = () => {
       setShowRightBtn(scrollLeft + clientWidth < scrollWidth);
     }
   };
+
+  useEffect(() => {
+    const fetchBeauty = async () => {
+      try {
+        const data = await getProductsByCategory("home");
+        setProducts(data);
+      } catch (err) {
+        console.error("Error fetching beauty products", err);
+      }
+    };
+
+    fetchBeauty();
+  }, []);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -124,27 +75,13 @@ const KitchenProducts = () => {
         )}
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto scroll-smooth py-4 gap-6 px-1"
+          className="flex overflow-x-auto overflow-hidden scroll-smooth py-4 gap-6 px-1"
           style={{ scrollbarWidth: "none" }}
         >
-          {Products.map((item, index) => (
-            <div
-              key={`${item.id}-${index}`}
-              className="bg-white lg:p-4 p-10 rounded-lg shadow-md flex-shrink-0 w-72 h-[18rem] hover:shadow-lg justify-center"
-            >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-48 h-38 p-4 object-cover mx-auto"
-              />
-              <h2 className="text-xl font-semibold mt-2 text-start">
-                {item.name}
-              </h2>
-              <p className="text-gray-600 text-start">{item.description}</p>
-              <p className="text-amber-600 font-bold text-start">
-                ${item.price}
-              </p>
-            </div>
+          {Products.map((product) => (
+           <div className="col-span-12 lg:col-span-4  sm:col-span-6 flex justify-center items-center">
+           <ProductCard key={product._id} product={product} />
+         </div>
           ))}
         </div>
 
