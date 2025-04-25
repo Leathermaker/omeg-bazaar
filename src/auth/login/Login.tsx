@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import Lottie from "lottie-react";
-import LoginAnimation from "../../../public/assets/animation.json";
+import LoginAnimation from "../../../public/animations/animation.json";
 import ScreenHandler from "../../components/wrappers/ScreenHandler";
 import SuccessMessage from "../../components/common/SuccessMessage";
 import { loginUser } from "../../services/authServices";

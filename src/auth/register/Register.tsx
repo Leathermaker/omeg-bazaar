@@ -1,6 +1,6 @@
 import Lottie from "lottie-react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
-import LoginAnimation from "../../../public/assets/animation.json";
+import LoginAnimation from "../../../public/animations/animation.json";
 import { useState } from "react";
 import { registerUser } from "../../services/authServices";
 import SuccessMessage from "../../components/common/SuccessMessage";
