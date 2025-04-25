@@ -11,7 +11,7 @@ const ElectronicsProducts = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [Products, setProducts] = useState<Product[]>([]);
   const [showLeftBtn, setShowLeftBtn] = useState(false);
-  const [showRightBtn, setShowRightBtn] = useState(true);
+  const [showRightBtn, setShowRightBtn] = useState(false);
 
   const checkScrollPosition = () => {
     if (scrollContainerRef.current) {
@@ -37,16 +37,21 @@ const ElectronicsProducts = () => {
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (container) {
-      container.addEventListener("scroll", checkScrollPosition);
+     
+      const timeout = setTimeout(() => {
+        checkScrollPosition();
+      }, 100);
 
-      // Initial check
-      checkScrollPosition();
+      container.addEventListener("scroll", checkScrollPosition);
+      window.addEventListener("resize", checkScrollPosition);
 
       return () => {
+        clearTimeout(timeout);
         container.removeEventListener("scroll", checkScrollPosition);
+        window.removeEventListener("resize", checkScrollPosition);
       };
     }
-  }, []);
+  }, [Products]);
 
 
   const scrollLeft = () => {
@@ -82,7 +87,7 @@ const ElectronicsProducts = () => {
           style={{ scrollbarWidth: "none" }}
         >
           {Products.map((product) => (
-            <div className="col-span-12 lg:col-span-4  sm:col-span-6 flex justify-center items-center">
+            <div className="flex-shrink-0 w-[300px]">
             <ProductCard key={product._id} product={product} />
           </div>
           ))}

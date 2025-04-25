@@ -12,7 +12,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   const navigate = useNavigate();
   const { cartCountValue } = useCartStore();
 
-  //use for add product  to cart or remove product from cart
+
   useEffect(() => {
     const data = localStorage.getItem("productIds");
     const arrayOfProdId = JSON.parse(data!);
@@ -34,7 +34,7 @@ const ProductCard = ({ product }: { product: Product }) => {
     <div
       key={product.name}
       onClick={() => navigate(`/products/${product._id}`)}
-      className="bg-white p-3 rounded-md flex flex-col w-[20rem] shadow-sm hover:shadow-2xl transition-shadow duration-300 mx-4   "
+      className="bg-white p-3 rounded-md flex flex-col w-[15rem] shadow-sm hover:shadow-2xl transition-shadow duration-300 mx-4   "
     >
       <div className="aspect-square w-full flex products-center justify-center h-[140px]">
         <img
