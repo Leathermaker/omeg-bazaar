@@ -3,7 +3,7 @@ import { Product } from "../../../../types/Product";
 import CartDetails from "./CartDetails";
 import { useQuery } from "@tanstack/react-query";
 import { getCartProductIdQuery } from "../../../../services/queries";
-import cartloader from "../../../../../public/assets/cartLoader.json";
+import cartloader from "../../../../../public/animations/cartLoader.json";
 import Lottie from "lottie-react";
 
 const CartLayout = () => {

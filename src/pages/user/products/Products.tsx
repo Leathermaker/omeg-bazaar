@@ -7,8 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getProductsQuery } from "../../../services/queries";
 import { Product } from "../../../types/Product";
 import Lottie from "lottie-react";
-import loader from "../../../../public/assets/loader.json";
-import ProductNotFound from "../../../../public/assets/notfounds.json";
+import loader from "../../../../public/animations/loader.json";
+import ProductNotFound from "../../../../public/animations/notfounds.json";
 import Category from "./components/Category";
 
 const Products = () => {

@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import missionAnimation from "../../../../../public/assets/mission.json";
+import missionAnimation from "../../../../../public/animations/mission.json";
 import { motion} from "motion/react";
 
 const AboutMission = () => {

@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import notfound from "../../../public/assets/notFound.json";
+import notfound from "../../../public/animations/notFound.json";
 
 const NotFoundPage = () => {
   return (
