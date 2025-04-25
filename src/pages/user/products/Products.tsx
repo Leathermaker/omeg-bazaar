@@ -6,6 +6,10 @@ import { useCategoryStore } from "../../../store/product/Product.store";
 import { useQuery } from "@tanstack/react-query";
 import { getProductsQuery } from "../../../services/queries";
 import { Product } from "../../../types/Product";
+import Lottie from "lottie-react";
+import loader from "../../../../public/assets/loader.json";
+import ProductNotFound from "../../../../public/assets/notfounds.json";
+import Category from "./components/Category";
 
 const Products = () => {
   const [search, setSearch] = useState("");
@@ -28,8 +32,12 @@ const Products = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex justify-center items-center">
-        <div className="animate-pulse text-lg">Loading products...</div>
+      <div className="w-full min-h-[50rem] flex flex-col items-center justify-center   ">
+        <Lottie
+          animationData={loader}
+          className=" w-[18rem] h-[18rem] lg:w-[25rem] lg:h-[25rem]"
+        />
+        <p className="text-4xl font-semibold ">Loading Products....</p>
       </div>
     );
   }
@@ -53,35 +61,12 @@ const Products = () => {
       <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6 md:space-y-8">
         {/* Search and Filter Section */}
         <div className="w-full  overflow-hidden">
-          <SearchAndFilter
-            search={search}
-            onSearchChange={handleSearchChange}
-          />
+          <SearchAndFilter search={search}  onSearchChange={handleSearchChange} />
         </div>
 
-        {/* Main Content */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Category Filter */}
-          <div className="lg:w-1/4">
-            <div className="w-full px-2 border-1 border-gray-200 p-2 rounded-lg">
-              <select
-                id="category-select"
-                className="w-full p-2  rounded-md focus:outline-none"
-                value={selectedCategory || ""}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-              >
-                <option value="">All Categories</option>
-                <option value="electronics">Electronics</option>
-                <option value="fashion">Fashion</option>
-                <option value="home">Home</option>
-                <option value="sports">Sports</option>
-                <option value="kitchen">Kitchen</option>
-                <option value="toys">Toys</option>
-                <option value="health">Health</option>
-                <option value="books">Books</option>
-              </select>
-            </div>
-          </div>
+         <Category selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
 
           {/* Product List */}
           <div className="lg:w-3/4">
@@ -94,24 +79,12 @@ const Products = () => {
                 ))}
               </div>
             ) : (
-              <div className="w-full py-12 flex flex-col items-center justify-center bg-gray-50 rounded-lg ">
-                <svg
-                  className="w-16 h-16 text-gray-400 mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <h3 className="text-lg font-medium text-gray-700">
-                  No products found
-                </h3>
+              <div className="w-fullflex flex-col items-center  ">
+                <Lottie
+                  animationData={ProductNotFound}
+                  className=" w-[18rem] h-[18rem] lg:w-[25rem] lg:h-[25rem]"
+                />
+                <p className="text-4xl font-bold">Product Not Found</p>
               </div>
             )}
           </div>

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import useCart from "../../../../hooks/useCart";
 import { Product } from "../../../../types/Product";
+import { Link } from "react-router-dom";
 
 interface ProductPriceProps {
   product: Product;
@@ -76,9 +77,9 @@ const ProductPrice = ({
         >
           {IsPresentInCart ? "Remove From Cart" : "Add To Cart"}
         </button>
-        <button className=" bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 px-8 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors">
+        <Link to="/address" className=" bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 px-8 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors">
           Buy Now
-        </button>
+        </Link>
       </div>
 
       <div className="mt-6 flex justify-start text-sm text-gray-500 ">

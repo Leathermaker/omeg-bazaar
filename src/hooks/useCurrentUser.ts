@@ -11,13 +11,14 @@ const useCurrentUser = () => {
       console.log("from hook", user);
     } catch {
       console.log("something went wrong");
+      setCurrentUser(null)
     }
   };
 
   useEffect(() => {
     fetchUser();
   }, []);
-  return { fetchUser, currentUser };
+  return { fetchUser, currentUser, setCurrentUser };
 };
 
 export default useCurrentUser;

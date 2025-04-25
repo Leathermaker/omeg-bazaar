@@ -1,21 +1,19 @@
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
-
+import ProductCard from "../components/ProductCard";
 import Button from "../../../../components/common/Button";
 import { getProductsByCategory } from "../../../../services/fetchers";
 import { Product } from "../../../../types/Product";
-import ProductCard from "../components/ProductCard";
 
 const KitchenProducts = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [Products, setProducts] = useState<Product[]>([]);
   const [showLeftBtn, setShowLeftBtn] = useState(false);
-  const [showRightBtn, setShowRightBtn] = useState(true);
+  const [showRightBtn, setShowRightBtn] = useState(false); 
 
   const checkScrollPosition = () => {
     if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } =
-        scrollContainerRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
       setShowLeftBtn(scrollLeft > 0);
       setShowRightBtn(scrollLeft + clientWidth < scrollWidth);
     }
@@ -24,7 +22,7 @@ const KitchenProducts = () => {
   useEffect(() => {
     const fetchBeauty = async () => {
       try {
-        const data = await getProductsByCategory("home");
+        const data = await getProductsByCategory("kitchen");
         setProducts(data);
       } catch (err) {
         console.error("Error fetching beauty products", err);
@@ -37,16 +35,22 @@ const KitchenProducts = () => {
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (container) {
-      container.addEventListener("scroll", checkScrollPosition);
+     
+      const timeout = setTimeout(() => {
+        checkScrollPosition();
+      }, 100);
 
-      // Initial check
-      checkScrollPosition();
+      container.addEventListener("scroll", checkScrollPosition);
+      window.addEventListener("resize", checkScrollPosition);
 
       return () => {
+        clearTimeout(timeout);
         container.removeEventListener("scroll", checkScrollPosition);
+        window.removeEventListener("resize", checkScrollPosition);
       };
     }
-  }, []);
+  }, [Products]);
+
   const scrollLeft = () => {
     scrollContainerRef.current?.scrollBy({ left: -300, behavior: "smooth" });
   };
@@ -56,7 +60,7 @@ const KitchenProducts = () => {
   };
 
   return (
-    <div className="h-auto w-full  relative">
+    <div className="h-auto w-full relative">
       <div className="flex justify-between items-center p-4">
         <h1 className="lg:text-3xl sm:text-xl font-semibold text-primary">
           Kitchen Products
@@ -79,9 +83,9 @@ const KitchenProducts = () => {
           style={{ scrollbarWidth: "none" }}
         >
           {Products.map((product) => (
-           <div className="col-span-12 lg:col-span-4  sm:col-span-6 flex justify-center items-center">
-           <ProductCard key={product._id} product={product} />
-         </div>
+            <div key={product._id} className="flex-shrink-0 w-[300px]"> 
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
 

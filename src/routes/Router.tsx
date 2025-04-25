@@ -10,6 +10,7 @@ import Cart from "../pages/user/cart/Cart";
 import ProductDisplay from "../pages/user/products/components/ProductDisplay";
 import Profile from "../pages/user/profile/Profile";
 import EditProfile from "../pages/user/profile/components/EditProfile";
+import NotFoundPage from "../components/common/NotFoundPage";
 
 const Router = () => {
   return (
@@ -26,9 +27,11 @@ const Router = () => {
           <Route path="/products/:id" element={<ProductDisplay />} />
           <Route path="/addressform" element={<AddressForm />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<AddressForm />} />
+          <Route path="/address" element={<AddressForm />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit/:userId" element={< EditProfile />} />
+          <Route path="/*" element={< NotFoundPage />} />
+
 
         </Route>
       </Routes>

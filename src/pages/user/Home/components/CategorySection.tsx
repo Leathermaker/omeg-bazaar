@@ -77,7 +77,7 @@ const CategorySection = () => {
         ref={scrollContainerRef}
         className="flex gap-8 overflow-x-auto pb-8 scrollbar-hide relative"
       >
-        {isPending && <p>Loading.......</p>}
+        {isPending && <p>Loading Categories.......</p>}
 
         {isError && <p>Error loading categories</p>}
 

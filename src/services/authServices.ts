@@ -10,9 +10,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 const token = localStorage.getItem("token");
 
 // Login
-export const loginUser = async (
-  userData: LoginData
-): Promise<LoginResponse> => {
+const loginUser = async (userData: LoginData): Promise<LoginResponse> => {
   try {
     const response = await axios.post<LoginResponse>(
       `${BASE_URL}/api/v1/user/login`,
@@ -31,7 +29,7 @@ export const loginUser = async (
 };
 
 // Register
-export const registerUser = async (
+const registerUser = async (
   userData: RegisterData
 ): Promise<RegisterResponse> => {
   try {
@@ -40,9 +38,13 @@ export const registerUser = async (
       userData
     );
     return response.data;
-    
   } catch {
     const message = "Registration failed";
     throw new Error(message);
   }
 };
+
+//add user address
+
+
+export { loginUser, registerUser };
