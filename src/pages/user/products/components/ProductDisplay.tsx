@@ -83,15 +83,17 @@ const ProductDisplay = () => {
           <ProductDetails product={product} />
         </div>
       </div>
-      <div className="p-4 w-full mt-18">
-        <h1 className="text-2xl font-bold mb-4 text-primary">Related Products</h1>
-        <div className="col-span-12 lg:col-span-4  sm:col-span-6 flex  items-center">
+
+      {/* Related products */}
+      <div className="max-w-full mx-auto mt-16 p-4">
+        <h1 className="text-2xl font-bold mb-6 text-primary">Related Products</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products?.map((product: Product) => (
             <ProductCard product={product} key={product._id} />
           ))}
         </div>
         {products?.length === 0 && (
-          <p className="text-gray-500">No related products found</p>
+          <p className="text-gray-500 mt-4">No related products found</p>
         )}
       </div>
     </div>

@@ -14,7 +14,7 @@ const AddProductForm = () => {
             <input
               type="text"
               placeholder=" Enter your Product Name"
-              className="py-2 border-b-2 border-primary focus:outline-none "
+              className="py-2 border-b-2 border-primary focus:outline-none"
             />
           </div>
 
@@ -85,12 +85,7 @@ const AddProductForm = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="mt-4 bg-primary  text-white font-semibold py-2 rounded shadow-sm transition"
-          >
-            Place Order
-          </button>
+        
         </form>
       </div>
       
