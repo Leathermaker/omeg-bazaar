@@ -7,6 +7,8 @@ import ProductImage from "./ProductImage";
 import { getProductsQuery } from "../../../../services/queries";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
+import Lottie from "lottie-react";
+import ProductLoader from  "../../../../../public/assets/notfounds.json";
 
 const ProductDisplay = () => {
   const Base_url = import.meta.env.VITE_BASE_URL;
@@ -57,8 +59,12 @@ const ProductDisplay = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen w-full bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 mt-14 flex justify-center items-center">
-        <div className="text-lg">Loading...</div>
+      <div className="w-fullflex flex-col items-center  ">
+        <Lottie
+          animationData={ProductLoader}
+          className=" w-[18rem] h-[18rem] lg:w-[25rem] lg:h-[25rem]"
+        />
+        <p className="text-4xl font-bold">Loading Products</p>
       </div>
     );
   }
@@ -86,7 +92,9 @@ const ProductDisplay = () => {
 
       {/* Related products */}
       <div className="max-w-full mx-auto mt-16 p-4">
-        <h1 className="text-2xl font-bold mb-6 text-primary">Related Products</h1>
+        <h1 className="text-2xl font-bold mb-6 text-primary">
+          Related Products
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products?.map((product: Product) => (
             <ProductCard product={product} key={product._id} />
