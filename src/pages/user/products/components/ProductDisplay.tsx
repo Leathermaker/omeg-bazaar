@@ -59,12 +59,12 @@ const ProductDisplay = () => {
 
   if (loading) {
     return (
-      <div className="w-fullflex flex-col items-center  ">
+      <div className="w-full flex flex-col items-center justify-center  ">
         <Lottie
           animationData={ProductLoader}
           className=" w-[18rem] h-[18rem] lg:w-[25rem] lg:h-[25rem]"
         />
-        <p className="text-4xl font-bold">Loading Products</p>
+        <p className="text-2xl font-semibold">Loading Products</p>
       </div>
     );
   }
