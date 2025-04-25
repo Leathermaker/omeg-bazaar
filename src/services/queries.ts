@@ -1,14 +1,14 @@
 import { queryOptions } from "@tanstack/react-query";
 import { fetchCategories, fetchProductIds, getProductsByCategory } from "./fetchers";
 
-export const getCategoriesQuery = () => {
+ const getCategoriesQuery = () => {
   return queryOptions({
     queryKey: ["categories"],
     queryFn: fetchCategories
   });
 };
 
-export const getProductsQuery = (categoryParam: string) => {
+ const getProductsQuery = (categoryParam: string) => {
     
   return queryOptions({
     queryKey: ["products", categoryParam],
@@ -16,7 +16,7 @@ export const getProductsQuery = (categoryParam: string) => {
   });
 };
 
-export const getCartProductIdQuery = (productIds: string[]) => {
+ const getCartProductIdQuery = (productIds: string[]) => {
   
   return queryOptions({
     queryKey: ["cartproducts", productIds],
@@ -25,3 +25,7 @@ export const getCartProductIdQuery = (productIds: string[]) => {
     
   });
 }
+
+
+
+export { getCategoriesQuery, getProductsQuery, getCartProductIdQuery };

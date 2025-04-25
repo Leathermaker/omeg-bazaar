@@ -24,13 +24,26 @@ export interface RegisterResponse {
     id: string;
     username: string;
     email: string;
+
   };
 }
-
-
 export interface CurrentUser {
   _id: number;
   username?: string;
   email: string;
   role: string;
+  address?: string;
+  contact?:string;
+  
 };
+
+export interface FormData {
+  phone: string;
+  street: string;
+  address:string;
+  address1:string;
+  city:string;
+  state:string
+  country:string;
+  pincode:string 
+}
