@@ -8,7 +8,7 @@ import { getProductsQuery } from "../../../../services/queries";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
 import Lottie from "lottie-react";
-import ProductLoader from  "../../../../../public/assets/notfounds.json";
+import ProductLoader from  "../../../../../public/assets/loader.json";
 
 const ProductDisplay = () => {
   const Base_url = import.meta.env.VITE_BASE_URL;
