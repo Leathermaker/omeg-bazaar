@@ -79,7 +79,7 @@ const Products = () => {
                 ))}
               </div>
             ) : (
-              <div className="w-fullflex flex-col items-center  ">
+              <div className="w-full flex flex-col items-center  ">
                 <Lottie
                   animationData={ProductNotFound}
                   className=" w-[18rem] h-[18rem] lg:w-[25rem] lg:h-[25rem]"
