@@ -9,11 +9,12 @@ const KitchenProducts = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [Products, setProducts] = useState<Product[]>([]);
   const [showLeftBtn, setShowLeftBtn] = useState(false);
-  const [showRightBtn, setShowRightBtn] = useState(false); 
+  const [showRightBtn, setShowRightBtn] = useState(false);
 
   const checkScrollPosition = () => {
     if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } =
+        scrollContainerRef.current;
       setShowLeftBtn(scrollLeft > 0);
       setShowRightBtn(scrollLeft + clientWidth < scrollWidth);
     }
@@ -35,7 +36,6 @@ const KitchenProducts = () => {
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (container) {
-     
       const timeout = setTimeout(() => {
         checkScrollPosition();
       }, 100);
@@ -83,7 +83,7 @@ const KitchenProducts = () => {
           style={{ scrollbarWidth: "none" }}
         >
           {Products.map((product) => (
-            <div key={product._id} className="flex-shrink-0 w-[300px]"> 
+            <div key={product._id} className="flex-shrink-0 w-[300px]">
               <ProductCard product={product} />
             </div>
           ))}

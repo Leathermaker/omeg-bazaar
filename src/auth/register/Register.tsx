@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import LoginAnimation from "../../../public/animations/animation.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { registerUser } from "../../services/authServices";
 import SuccessMessage from "../../components/common/SuccessMessage";
 import { MdLocalPhone} from "react-icons/md";
@@ -37,6 +37,10 @@ const Register = () => {
     }
   };
 
+   useEffect(() => {
+      window.scrollTo(0, 0);
+    },[])
+    
   return (
     <div className="min-h-screen flex justify-center items-center ">
       <div className="w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] bg-white flex flex-col md:flex-row">

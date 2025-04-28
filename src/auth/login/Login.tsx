@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import Lottie from "lottie-react";
 import LoginAnimation from "../../../public/animations/animation.json";
@@ -36,6 +36,10 @@ const Login = () => {
       alert(error instanceof Error ? error.message : "Login failed");
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[])
 
   return (
     <ScreenHandler>
