@@ -11,8 +11,9 @@ const BeautyProducts = () => {
   const [showLeftBtn, setShowLeftBtn] = useState(false);
   const [showRightBtn, setShowRightBtn] = useState(false);
 
+  
   useEffect(() => {
-    const fetchBeauty = async () => {
+    const fetchElectronics = async () => {
       try {
         const data = await getProductsByCategory("fashion");
         setProducts(data);
@@ -21,7 +22,7 @@ const BeautyProducts = () => {
       }
     };
 
-    fetchBeauty();
+    fetchElectronics();
   }, []);
 
   const checkScrollPosition = () => {

@@ -17,11 +17,12 @@ const fetchCategories = async () => {
   }
 };
 
-const getProductsByCategory = async (categoryParam: string) => {
+const getProductsByCategory = async (name: string) => {
   try {
-    const response = await axios.get(`${BASE_URL}/api/v2/product/get/${categoryParam}`, {
+    const response = await axios.get(`${BASE_URL}/api/v2/product/category/${name}`, {
       headers: { "Content-Type": "application/json" }
     });
+    
     return response.data.products;
   } catch (error) {
     console.error("failed to fetch products:", error);
