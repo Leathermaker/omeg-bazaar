@@ -4,29 +4,53 @@ import { useParams } from "react-router-dom";
 import { Product } from "../../../../types/Product";
 import ProductDetails from "./ProductDetails";
 import ProductImage from "./ProductImage";
-import { getProductsQuery } from "../../../../services/queries";
-import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
 import Lottie from "lottie-react";
-import ProductLoader from  "../../../../../public/animations/loader.json"
+import ProductLoader from "../../../../../public/animations/loader.json";
 
 const ProductDisplay = () => {
   const Base_url = import.meta.env.VITE_BASE_URL;
   const { id } = useParams<{ id: string }>();
+
   const [product, setProduct] = useState<Product | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const Id = product?.category;
+  console.log("from categoryid", Id);
 
-  const { data: products } = useQuery(
-    getProductsQuery(product?.category || "electronics")
-  );
+  const fetchRelatedProducts = async (currentProductId: string) => {
+    if (!product?.category) return;
+
+    try {
+      const res = await axios.get(
+        `${Base_url}/api/v2/product/categoryid/${Id}`
+      );
+
+      const filteredProducts = res.data.products.filter(
+        (p: Product) => p._id !== currentProductId
+      );
+
+      setRelatedProducts(filteredProducts);
+    } catch (err) {
+      console.error("Failed to fetch related products:", err);
+    }
+  };
+
+  useEffect(() => {
+    if (product?.category) {
+      console.log("from categoryid", product._id)
+      fetchRelatedProducts(product._id);
+
+    }
+  }, [product]);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `${Base_url}/api/v2/product/getsingleproduct/${id}`,
+          `${Base_url}/api/v2/product/single/${id}`,
           {
             headers: { "Content-Type": "application/json" }
           }
@@ -38,7 +62,7 @@ const ProductDisplay = () => {
           setError("Product not found");
           return;
         }
-
+        console.log("from prod display", productData);
         setProduct(productData);
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -59,12 +83,11 @@ const ProductDisplay = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex  items-center justify-center mt-20 ">
+      <div className="w-full flex items-center justify-center mt-20">
         <Lottie
           animationData={ProductLoader}
-          className=" w-[18rem] h-[18rem] lg:w-[25rem] lg:h-[25rem]"
+          className="w-[18rem] h-[18rem] lg:w-[25rem] lg:h-[25rem]"
         />
- 
       </div>
     );
   }
@@ -96,11 +119,11 @@ const ProductDisplay = () => {
           Related Products
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products?.map((product: Product) => (
-            <ProductCard product={product} key={product._id} />
+          {relatedProducts.map((prod) => (
+            <ProductCard product={prod} key={prod._id} />
           ))}
         </div>
-        {products?.length === 0 && (
+        {relatedProducts.length === 0 && (
           <p className="text-gray-500 mt-4">No related products found</p>
         )}
       </div>
