@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import UserLayout from "../layout/UserLayout";
 import Login from "../auth/login/Login";
 import Register from "../auth/register/Register";
-import { AboutUs, Contact, Home, Products } from "../pages/user";
+import { AboutUs, Contact, Home, ProductPageLayout } from "../pages/user";
 import Can from "../components/3D/Can";
 
 import AddressForm from "../pages/user/order/components/AddressForm";
@@ -21,18 +21,15 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/products" element={<ProductPageLayout />} />
           <Route path="/can" element={<Can />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/products/:id" element={<ProductDisplay />} />
-          <Route path="/addressform" element={<AddressForm />} />
+          <Route path="/addressform/:userId" element={<AddressForm />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/address" element={<AddressForm />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit/:userId" element={< EditProfile />} />
           <Route path="/*" element={< NotFoundPage />} />
-
-
         </Route>
       </Routes>
     </>

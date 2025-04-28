@@ -40,10 +40,10 @@ export interface CurrentUser {
 export interface FormData {
   phone: string;
   street: string;
-  address:string;
-  address1:string;
-  city:string;
-  state:string
-  country:string;
-  pincode:string 
+  address?: string;
+  address1?: string;
+  city: string;
+  state: string;
+  country: string;
+  pincode: string;
 }

@@ -2,6 +2,6 @@ import AboutUs from "./aboutus/AboutUs";
 
 import Contact from "./contact/Contact";
 import Home from "./Home/Home";
-import Products from "./products/Products";
+import ProductPageLayout from "./products/ProductPageLayout";
 
-export { Home, AboutUs, Products, Contact };
+export { Home, AboutUs, ProductPageLayout, Contact };

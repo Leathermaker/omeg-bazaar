@@ -16,3 +16,10 @@ export interface Product {
   images: ProductImage[];
   category: string;
 }
+
+export  interface Category {
+  _id: string;
+  name: string;
+  description: string;
+  products: Product[];
+}
