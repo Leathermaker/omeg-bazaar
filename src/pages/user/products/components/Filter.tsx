@@ -5,7 +5,7 @@ import { AnimatePresence } from "motion/react";
 import { parseAsBoolean, useQueryState } from "nuqs";
 
 const Filter: React.FC = () => {
-  const [price, setPrice] = useQueryState(
+  const [price] = useQueryState(
     "price",
     parseAsBoolean.withDefault(false)
   );
