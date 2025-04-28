@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import useCart from "../../../../hooks/useCart";
 import { Product } from "../../../../types/Product";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useCurrentUser from "../../../../hooks/useCurrentUser";
+import { CurrentUser } from "../../../../types/auth";
 
 interface ProductPriceProps {
   product: Product;
@@ -12,6 +14,7 @@ interface ProductPriceProps {
   setCurrentId?: React.Dispatch<React.SetStateAction<string>>;
   refreshCart?: boolean;
   setRefreshCart?: React.Dispatch<React.SetStateAction<boolean>>;
+
 }
 const ProductPrice = ({
   IsPresentInCart,
@@ -21,10 +24,14 @@ const ProductPrice = ({
   setCurrentId,
   setRefreshCart,
   refreshCart = false,
-  product
+  product,
+ 
 }: ProductPriceProps) => {
   const { RemoveProductFromCart, addProductToCart } = useCart();
-
+  const navigate= useNavigate();
+  const { currentUser } = useCurrentUser() as { currentUser: CurrentUser};
+  const userId = currentUser?._id;
+   
   useEffect(() => {
     const data = localStorage.getItem("productIds");
     const arrayOfProdId = JSON.parse(data!);
@@ -32,9 +39,7 @@ const ProductPrice = ({
       for (let i = 0; i < arrayOfProdId.length; i++) {
         if (arrayOfProdId[i] == product._id) {
           setIsPresentInCart(true);
-        }
-      }
-    }
+        }}}
   }, [
     IsPresentInCart,
     cartCountValue,
@@ -61,14 +66,18 @@ const ProductPrice = ({
       setRefreshCart(!refreshCart);
     }
   };
-
+  
+  const handleBuy = () => {
+    navigate(`/addressform/${userId}`)
+  }
+  
   return (
     <div className="mt-8 w-full p-4 ">
       <div className="flex">
         <span className="text-3xl font-bold text-gray-900">
           ${product.price.toFixed(2)}
         </span>
-     </div>
+      </div>
 
       <div className="mt-6 space-x-4 w-full flex justify-start">
         <button
@@ -77,9 +86,9 @@ const ProductPrice = ({
         >
           {IsPresentInCart ? "Remove From Cart" : "Add To Cart"}
         </button>
-        <Link to="/address" className=" bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 px-8 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors">
+        <button onClick={handleBuy} className=" bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 px-8 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors">
           Buy Now
-        </Link>
+        </button>
       </div>
 
       <div className="mt-6 flex justify-start text-sm text-gray-500 ">

@@ -30,7 +30,7 @@ const Navbar = () => {
     const array = JSON.parse(data || "[]");
     setCartCount(array.length);
   }, [cartCountValue]);
-  const getFirstLetter = (email: string) => email.charAt(0).toUpperCase();
+  const getFirstLetter = (email: string) => email?.charAt(0).toUpperCase() || 'm';
 
   const handleLLogOut = () => {
     Cookies.remove("authToken");

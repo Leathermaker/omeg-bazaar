@@ -2,11 +2,11 @@ import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useCategoryStore } from "../../../../store/product/Product.store.tsx";
 
 import { ProductImage } from "../../../../types/Product.ts";
 import { getCategoriesQuery } from "../../../../services/queries.ts";
 import { useQuery } from "@tanstack/react-query";
+import { useQueryState } from "nuqs";
 
 export type CategoryType = {
   _id: string;
@@ -18,10 +18,9 @@ const CategorySection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showLeftBtn, setShowLeftBtn] = useState(false);
   const [showRightBtn, setShowRightBtn] = useState(true);
-  const setSelectedCategory = useCategoryStore(
-    (state) => state.setSelectedCategory
-  );
+  const [category, setCategory] = useQueryState("category");
   const navigate = useNavigate();
+  console.log(category)
 
   const {
     data: categories,
@@ -46,6 +45,8 @@ const CategorySection = () => {
       return () => container.removeEventListener("scroll", checkScrollPosition);
     }
   }, []);
+
+  
 
   const scrollLeft = () =>
     scrollContainerRef.current?.scrollBy({ left: -300, behavior: "smooth" });
@@ -85,7 +86,7 @@ const CategorySection = () => {
           <motion.div
             key={category._id}
             onClick={() => {
-              setSelectedCategory(category.name);
+              setCategory(category._id);
               navigate("/products");
             }}
             initial={{ opacity: 0, scale: 0.8 }}

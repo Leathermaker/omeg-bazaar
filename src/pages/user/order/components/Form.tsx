@@ -5,9 +5,17 @@ interface FormProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   formData: FormData;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  errors: { [key in keyof FormData]?: string };
+  isSubmitting: boolean;
 }
 
-const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
+const Form = ({ 
+  handleSubmit, 
+  formData, 
+  setFormData, 
+  errors,
+  isSubmitting 
+}: FormProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -26,8 +34,9 @@ const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
           placeholder="Phone"
           value={formData.phone}
           onChange={handleChange}
-          className="py-2 border-b-2 border-primary focus:outline-none"
+          className={`py-2 border-b-2 ${errors.phone ? 'border-red-500' : 'border-primary'} focus:outline-none`}
         />
+        {errors.phone && <span className="text-red-500 text-sm">{errors.phone}</span>}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -38,8 +47,9 @@ const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
           placeholder="123 Main St"
           value={formData.street}
           onChange={handleChange}
-          className="py-2 border-b-2 border-primary focus:outline-none"
+          className={`py-2 border-b-2 ${errors.street ? 'border-red-500' : 'border-primary'} focus:outline-none`}
         />
+        {errors.street && <span className="text-red-500 text-sm">{errors.street}</span>}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -50,8 +60,9 @@ const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
           placeholder="Type Your Address"
           value={formData.address}
           onChange={handleChange}
-          className="py-2 border-b-2 border-primary focus:outline-none"
+          className={`py-2 border-b-2 ${errors.address ? 'border-red-500' : 'border-primary'} focus:outline-none`}
         />
+        {errors.address && <span className="text-red-500 text-sm">{errors.address}</span>}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -62,8 +73,9 @@ const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
           placeholder="Another Address"
           value={formData.address1}
           onChange={handleChange}
-          className="py-2 border-b-2 border-primary focus:outline-none"
+          className={`py-2 border-b-2 ${errors.address1 ? 'border-red-500' : 'border-primary'} focus:outline-none`}
         />
+        {errors.address1 && <span className="text-red-500 text-sm">{errors.address1}</span>}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -74,8 +86,9 @@ const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
           placeholder="City"
           value={formData.city}
           onChange={handleChange}
-          className="py-2 border-b-2 border-primary focus:outline-none"
+          className={`py-2 border-b-2 ${errors.city ? 'border-red-500' : 'border-primary'} focus:outline-none`}
         />
+        {errors.city && <span className="text-red-500 text-sm">{errors.city}</span>}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -86,8 +99,9 @@ const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
           placeholder="State"
           value={formData.state}
           onChange={handleChange}
-          className="py-2 border-b-2 border-primary focus:outline-none"
+          className={`py-2 border-b-2 ${errors.state ? 'border-red-500' : 'border-primary'} focus:outline-none`}
         />
+        {errors.state && <span className="text-red-500 text-sm">{errors.state}</span>}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -98,8 +112,9 @@ const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
           placeholder="Country"
           value={formData.country}
           onChange={handleChange}
-          className="py-2 border-b-2 border-primary focus:outline-none"
+          className={`py-2 border-b-2 ${errors.country ? 'border-red-500' : 'border-primary'} focus:outline-none`}
         />
+        {errors.country && <span className="text-red-500 text-sm">{errors.country}</span>}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -110,15 +125,19 @@ const Form = ({ handleSubmit, formData, setFormData }: FormProps) => {
           placeholder="Postal Code"
           value={formData.pincode}
           onChange={handleChange}
-          className="py-2 border-b-2 border-primary focus:outline-none"
+          className={`py-2 border-b-2 ${errors.pincode ? 'border-red-500' : 'border-primary'} focus:outline-none`}
         />
+        {errors.pincode && <span className="text-red-500 text-sm">{errors.pincode}</span>}
       </div>
 
       <button
         type="submit"
-        className="mt-4 bg-primary text-white font-semibold py-2 rounded shadow-sm transition"
+        disabled={isSubmitting}
+        className={`mt-4 bg-primary text-white font-semibold py-2 rounded shadow-sm transition ${
+          isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary-dark'
+        }`}
       >
-        Add Address
+        {isSubmitting ? 'Adding...' : 'Add Address'}
       </button>
     </form>
   );

@@ -10,7 +10,6 @@ const CartLayout = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const CartProdId = localStorage.getItem("productIds");
   const productIds = CartProdId ? JSON.parse(CartProdId) : [];
-
   const {
     data: cartproducts,
     isLoading,
