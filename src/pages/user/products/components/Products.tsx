@@ -15,7 +15,7 @@ const Products = () => {
     defaultValue: "all"
   });
   const [page] = useQueryState("page", parseAsInteger.withDefault(1));
-  const [limit] = useQueryState("limit", parseAsInteger.withDefault(10));
+  const [limit] = useQueryState("limit", parseAsInteger.withDefault(9));
   const [minPrice] = useQueryState("minPrice", parseAsInteger.withDefault(0));
   const [maxPrice] = useQueryState(
     "maxPrice",
@@ -79,7 +79,7 @@ const Products = () => {
             animationData={ProductNotFound}
             className=" w-[18rem] h-[18rem] lg:w-[25rem] lg:h-[25rem]"
           />
-          <p className="text-4xl font-bold">Product Not Found</p>
+          <p className="text-4xl font-bold font-serif">Product Not Found</p>
         </div>
       )}
     </div>

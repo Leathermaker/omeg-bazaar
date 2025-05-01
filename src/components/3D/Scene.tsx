@@ -1,28 +1,42 @@
-import { PerspectiveCamera } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Model } from "./Can3d";
-import { useScroll, useTransform } from "motion/react";
+// Scene.tsx
+import { OrbitControls, SpotLight } from "@react-three/drei";
+import { useControls } from "leva";
+import { Flower } from "./Flower";
 
 const Scene = () => {
-  const { scrollYProgress } = useScroll();
-
-  // Move the camera back on the Z-axis as you scroll
-  const z = useTransform(scrollYProgress, [0, 1], [10, 50]);
-
-  const { camera } = useThree();
-
-  useFrame(() => {
-    // Smooth zoom out effect
-    camera.position.set(0, 0, z.get());
-    camera.lookAt(0, 0, 0);
-  });
+  const { fly } = useControls({ fly: 0 });
 
   return (
     <>
-      <PerspectiveCamera makeDefault fov={35} position={[0, 0, 10]} />
+      <OrbitControls />
+      <SpotLight position={[0, 3.4, 0]} angle={0.5} power={20} castShadow />
 
-      <ambientLight intensity={5} />
-      <Model />
+      {/* Animated flower model */}
+      <Flower scale={[0.5, 0.5, 0.5]} position={[0, 1.8, 0]} />
+
+      {/* Animated sphere using Leva */}
+      <mesh
+        scale={[0.2, 0.2, 0.2]}
+        position={[0, fly, 0]}
+        receiveShadow
+        castShadow
+      >
+        <sphereGeometry />
+        <meshStandardMaterial />
+      </mesh>
+
+      {/* Static geometry */}
+      <mesh position={[0, 1.2, 0]} castShadow receiveShadow>
+        <boxGeometry />
+        <meshStandardMaterial />
+      </mesh>
+
+      <mesh position={[0, 0.5, 0]} scale={[5, 0.02, 5]} receiveShadow castShadow>
+        <boxGeometry />
+        <meshStandardMaterial />
+      </mesh>
+
+      <gridHelper />
     </>
   );
 };

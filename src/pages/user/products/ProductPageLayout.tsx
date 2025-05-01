@@ -19,9 +19,8 @@ const ProductPageLayout: React.FC = () => {
             <div className="lg:col-span-9 col-span-12 mt-6 lg:mt-0">
               <Products />
             </div>
-
-            <Pagination />
           </div>
+          <Pagination  totalProducts={30} productPerPage={5} />
         </div>
       </PaddingWrapper>
     </ScreenHandler>
